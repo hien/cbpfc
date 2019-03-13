@@ -188,9 +188,9 @@ func insnToC(insn instruction, blk *block) (string, error) {
 		return stat("x = a;")
 
 	case packetGuardAbsolute:
-		return stat("if (data + %d > data_end) return false;", i.Len)
+		return stat("if (data + %d > data_end) return false;", i.guard)
 	case packetGuardIndirect:
-		return stat("if (data + x + %d > data_end) return false;", i.Len)
+		return stat("if (data + x + %d > data_end) return false;", i.guard)
 
 	case initializeScratch:
 		return stat("m[%d] = 0;", i.N)
